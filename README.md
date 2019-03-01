@@ -1,1 +1,1 @@
-# she
+# Smart Home for Elderly (SHE)
