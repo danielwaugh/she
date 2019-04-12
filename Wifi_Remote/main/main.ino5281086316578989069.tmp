@@ -32,16 +32,13 @@ byte buttonPress = 0;
 
 int sleepCounter = 0;
 
-int onMatrix[2][3] = { {0, 0, 0},{0, 0, 0} };  //all off
-
-int prevMatrix[2][3] = { {0, 0, 0},{0, 0, 0} };
+byte onMatrix[2][3] = { {0, 0, 0},{0, 0, 0} };  //all off
 
 void WiFi_Connect();
 void MQTT_Connect(); 
 void MQTT_getData();
 void Read_Matrix();
 void Display_LEDS();
-void Update_Database();
 
 void setup() {
   WiFi_Connect();
@@ -50,9 +47,9 @@ void setup() {
 }
 
 void loop() {
-  if(!buttonPress) {
-    Read_Matrix();
-    Display_LEDS();
+/*  if(!buttonPress) {
+    readMatrix();
+    displayLEDS();
     sleepCounter += 1;
     if(sleepCounter > 3000)
     {
@@ -61,12 +58,12 @@ void loop() {
   }
   else {
     sleepCounter = 0;
-    Update_Database();
     for (int i = 0; i < 160; i++) {
-      Display_LEDS();
+      displayLEDS();
     }
+ //   updateMQTT();
     buttonPress = 0;
-  }
+  }*/
 }
 
 void WiFi_Connect() {
@@ -83,11 +80,12 @@ void MQTT_Connect(){
     return; 
   } 
   uint8_t retries = 3; 
-  while ((ret = mqtt.connect()) != 0) {
+  while ((ret = mqtt.connect()) != 0) { // connect will return 0 for connected 
     mqtt.disconnect(); 
     delay(5000);  // wait 5 seconds 
     retries--; 
     if (retries == 0) { 
+    // basically die and wait for WDT to reset me 
     while (1); 
     } 
  } 
@@ -99,58 +97,15 @@ void MQTT_getData() {
   Adafruit_MQTT_Subscribe *subscription; 
   while ((subscription = mqtt.readSubscription()) || flag == 0) { 
    if (subscription == &remoteReceive) { 
-      char * data = (char *)remoteReceive.lastread;
-      if(data[0] == 'D'){
-        if(data[1] == '1') {
-          onMatrix[0][0] = 1;
-          prevMatrix[0][0] = 1;
-        }
-        if(data[1] == '2') {
-          onMatrix[0][0] = 2;
-          prevMatrix[0][0] = 2;
-        }
-        if(data[2] == '1') {
-          onMatrix[0][1] = 1;
-          prevMatrix[0][1] = 1;
-        }
-        if(data[2] == '2') {
-          onMatrix[0][1] = 2;
-          prevMatrix[0][1] = 2;
-        }
-        if(data[3] == '1') {
-          onMatrix[0][2] = 1;
-          prevMatrix[0][2] = 1;
-        }
-        if(data[3] == '2') {
-          onMatrix[0][2] = 2;
-          prevMatrix[0][2] = 2;
-        }
-        if(data[4] == '1') {
-          onMatrix[1][0] = 1;
-          prevMatrix[1][0] = 1;
-        }
-        if(data[4] == '2') {
-          onMatrix[1][0] = 2;
-          prevMatrix[1][0] = 2;
-        }
-        if(data[5] == '1') {
-          onMatrix[1][1] = 1;
-          prevMatrix[1][1] = 1;
-        }
-        if(data[5] == '2') {
-          onMatrix[1][1] = 2;
-          prevMatrix[1][1] = 2;
-        }
-        if(data[6] == '1') {
-          onMatrix[1][2] = 1;
-          prevMatrix[1][2] = 1;
-        }
-        if(data[6] == '2') {
-          onMatrix[1][2] = 2;
-          prevMatrix[1][2] = 2;
-        }
-        flag = 1;
-      }
+     if(strcmp((char *)remoteReceive.lastread, "0,0,0,0,0,0") == 0) {
+      flag = 1;
+        pinMode(LED_1, OUTPUT);    
+        pinMode(LED_2, OUTPUT);     
+        pinMode(LED_3, INPUT);      
+  
+        digitalWrite(LED_1, HIGH);
+        digitalWrite(LED_2, LOW); 
+     }
     }
   }
 }
@@ -172,9 +127,7 @@ void Read_Matrix() {
             byte rowCol = rows[rowIndex];
             pinMode(rowCol, INPUT_PULLUP);
             if(digitalRead(rowCol) == 0) {
-              if(onMatrix[colIndex][rowIndex] != 2) {
-                onMatrix[colIndex][rowIndex] ^= 1;
-              }
+              onMatrix[colIndex][rowIndex] ^= 1;
               buttonPress = 1;
               break;
             }
@@ -261,17 +214,4 @@ void Display_LEDS() {
   pinMode(LED_1, INPUT);    
   pinMode(LED_2, INPUT);     
   pinMode(LED_3, INPUT);      
-}
-
-void Update_Database() {
-  for(int row=0; row < 2; row++) {
-    for(int col=0; col < 3; col++) {
-      if (onMatrix[row][col] != prevMatrix[row][col]) {
-        String temp = 'R' + String(row) + String(col) + String(onMatrix[row][col]);
-        char * sender = (char *)temp.c_str();
-        remoteSend.publish(sender);
-        prevMatrix[row][col] = onMatrix[row][col];
-      }
-    }
-  }
 }

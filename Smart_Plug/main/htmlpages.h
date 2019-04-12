@@ -8,8 +8,11 @@ const char homePageHTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -65,8 +68,11 @@ const char configurePage1HTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -177,8 +183,11 @@ const char configurePage2HTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -228,8 +237,11 @@ const char configurePage3HTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -272,8 +284,11 @@ const char checkStatusHTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -310,8 +325,11 @@ const char leavePageHTML1[] PROGMEM = R"=====(
       }
 
       #header {
-        font-family: 'Oswald';
-        text-shadow: 1px 1px red;
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
       }
 
       #submit {
@@ -342,6 +360,7 @@ const char leavePageHTML2[] PROGMEM = R"=====(
   <h1 id="header">You have Left Setup Mode</h1>
   <h3 id="header">You can close the page now</h3>
   <h3 id="header">If you would like to enter setup again, press the button on the smart plug for 5 seconds and connect to the network again</h3>
+  <h3 id="header">Please unplug and replug your Smart Plug</h3>
   </CENTER> 
 </BODY>
 </HTML>
