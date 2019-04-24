@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SHE_APP</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+
+</resources>
