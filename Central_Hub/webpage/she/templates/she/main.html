@@ -1,0 +1,22 @@
+{% load static %}
+<HTML>
+  <HEAD>
+      <TITLE>SHE Smart Plug</TITLE>
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </HEAD>
+<BODY>
+  <CENTER>
+    <br><br>
+      <img src="{%static 'images/shelogo1.png' %}" style="width:400px;height:250px;">
+      <h1 id="header">Welcome to your Central Hub</h1>
+      <h3 id="header">Use the buttons below to view settings for the hub</h3>
+      <br>
+    <form action="/she/hubconnection1">
+    <input id="submit" type="submit" value="Connection Status" />
+    </form>
+    <form action="/she/smartplugconnection">
+      <input id="submit" type="submit" value="Check Status of Smart Plugs" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>

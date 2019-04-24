@@ -1,0 +1,19 @@
+{% load static %}
+<HTML>
+  <HEAD>
+      <TITLE>Smart Plug Status</TITLE>
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </HEAD>
+<BODY>
+  <CENTER>
+    <br><br>
+      <img src="{%static 'images/shelogo1.png' %}" style="width:400px;height:250px;">
+      <h1 id="header">Smart Plug Status</h1>
+      <h3 id="header">Here is a list of your smart plugs and their statuses</h3>
+      <br>
+    <form action="/she/">
+      <input id="submit" type="submit" value="Home" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>

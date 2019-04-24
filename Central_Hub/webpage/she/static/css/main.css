@@ -1,0 +1,94 @@
+body {
+        background-color: #79BBE4;
+      }
+
+      #header {
+        color: #ffffff; 
+        font-family: 'Raleway',sans-serif; 
+        font-weight: 800; 
+        text-align: center; 
+        text-transform: uppercase;
+      }
+
+      #submit {
+        background-color: #EE1515;
+        padding: .5em;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 6px;
+        color: #fff;
+        font-family: 'Oswald';
+        font-size: 20px;
+        text-decoration: none;
+        border: none;
+      }
+
+      #submit:hover {
+        border: none;
+        background: #3F2FE7;
+        box-shadow: 0px 0px 1px #777;
+      }
+      
+      .container {
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+      }
+      
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      .container input:checked ~ .checkmark {
+        background-color: #EE1515;
+      }
+
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .container .checkmark:after {
+         top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+      }
+
+      input[type=password], select {
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }

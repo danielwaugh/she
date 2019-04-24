@@ -1,0 +1,26 @@
+{% load static %}
+<HTML>
+  <HEAD>
+      <TITLE>Hub Connection Status</TITLE>
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </HEAD>
+<BODY>
+  <CENTER>
+    <br><br>
+      <img src="{%static 'images/shelogo1.png' %}" style="width:400px;height:250px;">
+      <h1 id="header">Hub Connection Status</h1>
+      {% if SSID %}
+        <h3 id="header">You are currently Connected to: {{ SSID }}</h3>
+      {% else %}
+        <h3 id="header">You are not connected to a network, please click the button below to connect to a network</h3>
+      {% endif %}
+      <br>
+    <form action="/she/hubconnection2">
+    <input id="submit" type="submit" value="Connect to New Network" />
+    </form>
+    <form action="/she/">
+      <input id="submit" type="submit" value="Home" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>

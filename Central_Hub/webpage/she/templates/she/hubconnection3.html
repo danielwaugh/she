@@ -1,0 +1,37 @@
+{% load static %}
+<HTML>
+  <HEAD>
+      <TITLE>Hub Connection Status</TITLE>
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </HEAD>
+<BODY>
+  <CENTER>
+    <br><br>
+      <img src="{%static 'images/shelogo1.png' %}" style="width:400px;height:250px;">
+      <h1 id="header">Hub Connection Setup</h1> 
+      {% if curSSID %}
+        <h3 id="header">Please enter the password for the selected network</h3>
+        <br>
+        <h3 id="header">Network: {{ curSSID }}</h3>
+    <form action="/she/hubconnection4" method="get">
+      <input id="text" name="password" type="password">
+      <br>
+      <br>
+      <input id="submit" type="submit" value="Connect" />
+    </form>
+    <form action="/she/">
+      <input id="submit" type="submit" value="Home" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>
+      {% else %}
+        <h3 id="header">You did not Select a Network</h3>
+      <br>
+    <form action="/she/">
+      <input id="submit" type="submit" value="Home" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>
+{% endif %}

@@ -1,0 +1,36 @@
+{% load static %}
+<HTML>
+  <HEAD>
+      <TITLE>Hub Connection Status</TITLE>
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </HEAD>
+<BODY>
+  <CENTER>
+    <br><br>
+      <img src="{%static 'images/shelogo1.png' %}" style="width:400px;height:250px;">
+      <h1 id="header">Hub Connection Setup</h1>
+      <h3 id="header">Select your home network from the list below</h3>
+      <br>
+      <form action="/she/hubconnection3" method="get">
+      {% if ssids %}
+        {% for ssid in ssids %}
+          <label id="header" class="container">{{ ssid }}
+            <input type="radio" name="radio" value="{{ ssid }}">
+            <span class="checkmark"></span>
+          </label>
+          <br>
+          <br>
+        {% endfor %}
+      {% endif %}
+      <br><br>
+    <input id="submit" type="submit" value="Connect" />
+    </form>
+    <form action="/she/hubconnection2">
+    <input id="submit" type="submit" value="Refresh Network List" />
+    </form>
+    <form action="/she/">
+      <input id="submit" type="submit" value="Home" />
+    </form>
+  </CENTER> 
+</BODY>
+</HTML>
